@@ -16,6 +16,9 @@ BookingSystem::BookingSystem() {
 }
 
 BookingSystem::BookingSystem(string name, int totalWindowsLaptops, int totalMacBooks) {
+    if (name.length() > 64) {
+        name = name.substr(0, 64);
+    }
     this->name = name;
     this->totalWindowsLaptops = totalWindowsLaptops;
     this->totalMacBooks = totalMacBooks;
