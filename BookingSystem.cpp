@@ -43,11 +43,15 @@ bool BookingSystem::RentMacBook() {
 }
 
 void BookingSystem::ReturnWindowsLaptop() {
-    availableWindowsLaptops++;
+    if (availableWindowsLaptops < totalWindowsLaptops) {
+        availableWindowsLaptops++;
+    }
 }
 
 void BookingSystem::ReturnMacBook() {
-    availableMacBooks++;
+    if (availableMacBooks < totalMacBooks) {
+        availableMacBooks++;
+    }
 }
 
 string BookingSystem::getName() {
