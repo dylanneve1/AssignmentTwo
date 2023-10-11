@@ -138,13 +138,16 @@ void BookingSystem::removeMacBooks(unsigned int removedMacBooks) {
 
 // Print full report of all current values
 void BookingSystem::PrintReport() {
-    cout << "Booking System Report for " << name << endl;
-    cout << "Total Windows Laptops: " << totalWindowsLaptops << endl;
-    cout << "Total MacBooks: " << totalMacBooks << endl;
-    cout << "Rented Windows Laptops: " << getRentedWindowsLaptops() << endl;
-    cout << "Rented MacBooks: " << getRentedMacBooks() << endl;
-    cout << "Rented Laptops: " << getRentedLaptops() << endl;
-    cout << "Available Windows Laptops: " << availableWindowsLaptops << endl;
-    cout << "Available MacBooks: " << availableMacBooks << endl;
-    cout << "Available Laptops: " << availableWindowsLaptops + availableMacBooks << endl;
+    cout << "---------------------" << endl;
+    cout << "Laptop Booking System" << endl;
+    cout << "---------------------" << endl;
+    cout << "Name                      : " << name <, endl;
+    cout << "Total Windows Laptops     : " << totalWindowsLaptops << endl;
+    cout << "Total MacBooks            : " << totalMacBooks << endl;
+    cout << "Rented Windows Laptops    : " << getRentedWindowsLaptops() << endl;
+    cout << "Rented MacBooks           : " << getRentedMacBooks() << endl;
+    cout << "Rented Laptops            : " << getRentedLaptops() << endl;
+    cout << "Available Windows Laptops : " << availableWindowsLaptops << endl;
+    cout << "Available MacBooks        : " << availableMacBooks << endl;
+    cout << "Available Laptops         : " << availableWindowsLaptops + availableMacBooks << endl;
 }
