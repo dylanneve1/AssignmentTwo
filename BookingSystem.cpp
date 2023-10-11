@@ -7,6 +7,20 @@
 
 using namespace std;
 
+
+void hookCALL(string a, int x, int y, int z) {
+    cout << "Function called! " << a << endl;
+    if (x != 0) cout << "Parameter passed! " << x << endl;
+    cout << "Previous value! " << y << " New value! " << z << endl;
+}
+
+void dumpStartData(string name, int totalWindowsLaptops, int totalMacBooks) {
+    cout << "New class of BookingSystem created!" << endl;
+    cout << "Name            : " << name << endl;
+    cout << "Windows Laptops : " << totalWindowsLaptops << endl;
+    cout << "MacBooks        : " << totalMacBooks << endl;
+}
+
 BookingSystem::BookingSystem() {
     name = "Trinity Laptop Bookings";
     totalWindowsLaptops = 20;
@@ -16,6 +30,7 @@ BookingSystem::BookingSystem() {
 }
 
 BookingSystem::BookingSystem(string name, int totalWindowsLaptops, int totalMacBooks) {
+    DEBUG_LOGGING ? dumpStartData(name, totalWindowsLaptops, totalMacBooks) : void();
     // Check name length isn't longer than 64
     if (name.length() > 64) name = name.substr(0, 64);
     // Check totalWindowsLaptops and totalMacBooks are >= 0
@@ -32,8 +47,11 @@ BookingSystem::BookingSystem(string name, int totalWindowsLaptops, int totalMacB
 // RentWindowsLaptop if availableWindowsLaptops > 0
 bool BookingSystem::RentWindowsLaptop() {
     if (availableWindowsLaptops > 0) {
+        DEBUG_LOGGING ? hookCALL(__FUNCTION__, 0, availableWindowsLaptops, availableWindowsLaptops - 1) : void();
         availableWindowsLaptops--;
         return true;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
     }
     return false;
 }
@@ -41,8 +59,11 @@ bool BookingSystem::RentWindowsLaptop() {
 // RentMacBook if availableMacBooks > 0
 bool BookingSystem::RentMacBook() {
     if (availableMacBooks > 0) {
+        DEBUG_LOGGING ? hookCALL(__FUNCTION__, 0, availableMacBooks, availableMacBooks - 1) : void();
         availableMacBooks--;
         return true;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
     }
     return false;
 }
@@ -50,14 +71,20 @@ bool BookingSystem::RentMacBook() {
 // ReturnWindowsLaptop and check totalWindowsLaptops is correct
 void BookingSystem::ReturnWindowsLaptop() {
     if (availableWindowsLaptops < totalWindowsLaptops) {
+        DEBUG_LOGGING ? hookCALL(__FUNCTION__, 0, availableWindowsLaptops, availableWindowsLaptops + 1) : void();
         availableWindowsLaptops++;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
     }
 }
 
 // ReturnMacBook and check totalMacBooks is correct
 void BookingSystem::ReturnMacBook() {
     if (availableMacBooks < totalMacBooks) {
+        DEBUG_LOGGING ? hookCALL(__FUNCTION__, 0, availableMacBooks, availableMacBooks + 1) : void();
         availableMacBooks++;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
     }
 }
 
@@ -108,35 +135,49 @@ unsigned int BookingSystem::getRentedLaptops() {
 
 // Add a Windows laptop
 void BookingSystem::addWindowsLaptops(unsigned int additionalWindowsLaptops) {
-    if (DEBUG_LOGGING) {
-        cout << __FUNCTION__ << ": adding " << additionalWindowsLaptops << "laptops" << endl;
-    }
+    DEBUG_LOGGING ? hookCALL(__FUNCTION__, additionalWindowsLaptops, availableWindowsLaptops, availableWindowsLaptops + additionalWindowsLaptops) : void();
     totalWindowsLaptops += additionalWindowsLaptops;
     availableWindowsLaptops += additionalWindowsLaptops;
 }
 
 // Add a MacBook
 void BookingSystem::addMacBooks(unsigned int additionalMacBooks) {
-    if (DEBUG_LOGGING) {
-        cout << __FUNCTION__ << ": adding " << additionalMacBooks << "laptops" << endl;
-    }
+    DEBUG_LOGGING ? hookCALL(__FUNCTION__, additionalMacBooks, availableMacBooks, availableMacBooks + additionalMacBooks) : void();
     totalMacBooks += additionalMacBooks;
     availableMacBooks += additionalMacBooks;
 }
 
 // Remove a Windows laptop
 void BookingSystem::removeWindowsLaptops(unsigned int removedWindowsLaptops) {
+    bool failed = true;
+    DEBUG_LOGGING ? hookCALL(__FUNCTION__, removedWindowsLaptops, availableWindowsLaptops, availableWindowsLaptops - removedWindowsLaptops) : void();
     if (removedWindowsLaptops <= availableWindowsLaptops) {
         totalWindowsLaptops -= removedWindowsLaptops;
         availableWindowsLaptops -= removedWindowsLaptops;
+        failed = false;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
+    }
+    if (failed) {
+        totalWindowsLaptops -= availableWindowsLaptops;
+        availableWindowsLaptops -= availableWindowsLaptops;
     }
 }
 
 // Remove a MacBook
 void BookingSystem::removeMacBooks(unsigned int removedMacBooks) {
+    bool failed = true;
+    DEBUG_LOGGING ? hookCALL(__FUNCTION__, removedMacBooks, availableMacBooks, availableMacBooks - removedMacBooks) : void();
     if (removedMacBooks <= availableMacBooks) {
         totalMacBooks -= removedMacBooks;
         availableMacBooks -= removedMacBooks;
+        failed = false;
+    } else if (DEBUG_LOGGING) {
+        cout << "ERR: " << __FUNCTION__ << " CONDITIONAL FAIL!!" << endl;
+    }
+    if (failed) {
+        totalMacBooks -= availableMacBooks;
+        availableMacBooks -= availableMacBooks;
     }
 }
 
