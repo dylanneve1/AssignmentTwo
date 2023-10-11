@@ -49,17 +49,15 @@ bool BookingSystem::RentMacBook() {
 
 // ReturnWindowsLaptop and check totalWindowsLaptops is correct
 void BookingSystem::ReturnWindowsLaptop() {
-    availableWindowsLaptops++;
-    if (availableWindowsLaptops > totalWindowsLaptops) {
-        totalWindowsLaptops = availableWindowsLaptops;
+    if (availableWindowsLaptops < totalWindowsLaptops) {
+        availableWindowsLaptops++;
     }
 }
 
 // ReturnMacBook and check totalMacBooks is correct
 void BookingSystem::ReturnMacBook() {
-    availableMacBooks++;
-    if (availableMacBooks > totalMacBooks) {
-        totalMacBooks = availableMacBooks;
+    if (availableMacBooks < totalMacBooks) {
+        availableMacBooks++;
     }
 }
 
