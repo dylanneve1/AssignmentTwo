@@ -3,7 +3,7 @@
 
 #include <string>
 
-#define DEBUG_LOGGING 1
+#define DEBUG_LOGGING 0
 
 using namespace std;
 
