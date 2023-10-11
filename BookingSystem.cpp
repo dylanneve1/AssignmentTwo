@@ -126,7 +126,7 @@ void BookingSystem::addMacBooks(unsigned int additionalMacBooks) {
 
 // Remove a Windows laptop
 void BookingSystem::removeWindowsLaptops(unsigned int removedWindowsLaptops) {
-    if (removedWindowsLaptops <= totalWindowsLaptops) {
+    if (removedWindowsLaptops <= availableWindowsLaptops) {
         totalWindowsLaptops -= removedWindowsLaptops;
         availableWindowsLaptops -= removedWindowsLaptops;
     }
@@ -134,7 +134,7 @@ void BookingSystem::removeWindowsLaptops(unsigned int removedWindowsLaptops) {
 
 // Remove a MacBook
 void BookingSystem::removeMacBooks(unsigned int removedMacBooks) {
-    if (removedMacBooks <= totalMacBooks) {
+    if (removedMacBooks <= availableMacBooks) {
         totalMacBooks -= removedMacBooks;
         availableMacBooks -= removedMacBooks;
     }
