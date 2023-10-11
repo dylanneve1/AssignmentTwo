@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define DEBUG_LOGGING 1
+
 using namespace std;
 
 class BookingSystem {

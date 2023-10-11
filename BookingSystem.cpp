@@ -108,12 +108,18 @@ unsigned int BookingSystem::getRentedLaptops() {
 
 // Add a Windows laptop
 void BookingSystem::addWindowsLaptops(unsigned int additionalWindowsLaptops) {
+    if (DEBUG_LOGGING) {
+        cout << __FUNCTION__ << ": adding " << additionalWindowsLaptops << "laptops" << endl;
+    }
     totalWindowsLaptops += additionalWindowsLaptops;
     availableWindowsLaptops += additionalWindowsLaptops;
 }
 
 // Add a MacBook
 void BookingSystem::addMacBooks(unsigned int additionalMacBooks) {
+    if (DEBUG_LOGGING) {
+        cout << __FUNCTION__ << ": adding " << additionalMacBooks << "laptops" << endl;
+    }
     totalMacBooks += additionalMacBooks;
     availableMacBooks += additionalMacBooks;
 }
@@ -139,7 +145,7 @@ void BookingSystem::PrintReport() {
     cout << "---------------------" << endl;
     cout << "Laptop Booking System" << endl;
     cout << "---------------------" << endl;
-    cout << "Name                      : " << name <, endl;
+    cout << "Name                      : " << name << endl;
     cout << "Total Windows Laptops     : " << totalWindowsLaptops << endl;
     cout << "Total MacBooks            : " << totalMacBooks << endl;
     cout << "Rented Windows Laptops    : " << getRentedWindowsLaptops() << endl;
